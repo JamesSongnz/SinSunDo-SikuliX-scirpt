@@ -1,0 +1,186 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>InfiniteRetry.sikuli</h2> <a href="InfiniteRetry.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">from</span> sikuli.Sikuli <span class="kw">import</span> *
+<span class="cmt">#  this is for daily sotang</span>
+Debug.user(<span class="str">"Sub char each join evt &amp; go  %s"</span> % (<span class="str">"V01"</span>))
+
+<span class="kw">def</span> ExitScript(event):
+    exit()
+
+<span class="cmt"># When the user pressed Ctrl+Alt+F1, click the top-left apple icon.</span>
+Env.addHotkey(Key.ESC, KeyModifier.CTRL ,ExitScript)
+setThrowException(False)
+<span class="kw">def</span> WaitReload():
+
+    <span class="skw">click</span>(Location(<span class="dig">74</span>, <span class="dig">77</span>))
+    <span class="skw">wait</span>(<span class="dig">5</span>)
+<span class="cmt">#    Region(47,-129,121,37).wait("1446565520094.png", 9)</span>
+    <span class="skw">wait</span>(<span class="dig">12</span>) <span class="cmt"># to wait until reorganize menu icon</span>
+    Debug.user(<span class="str">"Reload done !!"</span> )
+
+<span class="kw">def</span> InfiniteRetry_100year():
+    <span class="cmt"># choice retry item</span>
+    <span class="cmt"># go. </span>
+    <span class="cmt"># reload</span>
+    <span class="cmt"># wait </span>
+    <span class="cmt"># re-</span>
+    <span class="skw">wait</span>(<span class="dig">0.5</span>)
+
+    r_Menuicons = Region(Region(<span class="dig">342</span>,<span class="dig">185</span>,<span class="dig">661</span>,<span class="dig">313</span>))
+
+
+    <span class="cmt"># six return </span>
+    <span class="cmt">#r_Menuicons.find("../SixReturn.png").click()</span>
+    r_Menuicons.<span class="skw">find</span>(<img src="1467211405339.png" />).<span class="skw">click</span>()
+    startSix = False
+    <span class="kw">while</span> <span class="kw">not</span> startSix:
+        r_sixbutton = Region(Region(<span class="dig">413</span>,<span class="dig">644</span>,<span class="dig">380</span>,<span class="dig">76</span>))
+        m_six = r_sixbutton.<span class="skw">wait</span>(<img src="1467211523552.png" />)
+        m_six.<span class="skw">click</span>()
+<span class="cmt">#        m_six.click()</span>
+        <span class="skw">wait</span>(<span class="dig">2</span>)
+
+        <span class="cmt"># check fight-remain time</span>
+        <span class="cmt">#try:</span>
+        ret = r_sixbutton.waitVanish(<img src="../SixButtonReset.png" />,<span class="dig">8</span>)
+        <span class="kw">if</span> ret:
+            startSix = True
+        <span class="cmt">#except FindFailed:</span>
+        <span class="kw">else</span>:
+            <span class="skw">wait</span>(<span class="dig">3</span>)
+
+
+    WaitReload()
+
+
+<span class="kw">def</span> InfiniteRetry():
+    <span class="cmt"># choice retry item</span>
+    <span class="cmt"># go. </span>
+    <span class="cmt"># reload</span>
+    <span class="cmt"># wait </span>
+    <span class="cmt"># re-</span>
+    <span class="skw">wait</span>(<span class="dig">0.5</span>)
+
+    r_Menuicons = Region(Region(<span class="dig">342</span>,<span class="dig">185</span>,<span class="dig">661</span>,<span class="dig">313</span>))
+
+
+    <span class="cmt"># six return </span>
+    <span class="cmt">#r_Menuicons.find("../SixReturn.png").click()</span>
+    r_Menuicons.<span class="skw">find</span>(<img src="1467211405339.png" />).<span class="skw">click</span>()
+    startSix = False
+    <span class="kw">while</span> <span class="kw">not</span> startSix:
+        r_sixbutton = Region(<span class="dig">599</span>,-<span class="dig">357</span>,<span class="dig">246</span>,<span class="dig">147</span>)
+        m_six = r_sixbutton.<span class="skw">find</span>(<img src="1446569622154.png" />)
+        m_six.<span class="skw">click</span>()
+        m_six.<span class="skw">click</span>()
+        <span class="skw">wait</span>(<span class="dig">2</span>)
+
+        <span class="cmt"># check fight-remain time</span>
+        <span class="cmt">#try:</span>
+        ret = r_sixbutton.waitVanish(<img src="../SixButtonReset.png" />,<span class="dig">8</span>)
+        <span class="kw">if</span> ret:
+            startSix = True
+        <span class="cmt">#except FindFailed:</span>
+        <span class="kw">else</span>:
+            <span class="skw">wait</span>(<span class="dig">3</span>)
+
+
+    WaitReload()
+
+<span class="str">"""
+    # restrictedArea
+    r_Menuicons.find("../RestrictArea.png").click()
+    wait(1)
+    m_resA=Region(407,-288,200,88).find("1446569783834.png")
+    m_resA.click()
+    m_resA.click()    
+    wait(0.5)    
+    WaitReload()   
+"""</span>
+
+
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    Settings.UserLogs = True
+    Settings.UserLogPrefix = <span class="str">"user"</span>
+    Settings.ActionLogs = True
+    openApp(<span class="str">"Google Chrome"</span>)
+    setThrowException(False)
+
+    <span class="kw">for</span> i <span class="kw">in</span> xrange(<span class="dig">200</span>):
+        InfiniteRetry_100year()
+        Debug.user(<span class="str">"retury done %d "</span> % i)
+
+    exit()
+</pre>
+</body>
+</html>
