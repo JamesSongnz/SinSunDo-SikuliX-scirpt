@@ -1,0 +1,138 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>utils.sikuli</h2> <a href="utils.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">from</span> sikuli <span class="kw">import</span> *
+<span class="kw">from</span> sikuli <span class="kw">import</span> Region
+
+<span class="cmt"># utils </span>
+
+
+<span class="kw">def</span> MakeFullScreen_try():
+<span class="cmt">#    setFindFailedResponse(SKIP)</span>
+    setThrowException(False)
+    <span class="cmt"># Enlarge left bar</span>
+    <span class="kw">try</span>:
+
+        Region(Region(<span class="dig">1033</span>,<span class="dig">376</span>,<span class="dig">58</span>,<span class="dig">222</span>)).<span class="skw">find</span>(<img src="1466943356273.png" />).<span class="skw">click</span>()
+    <span class="kw">except</span> FindFailed:
+        <span class="kw">pass</span>
+
+    <span class="cmt"># remove up tool bar</span>
+    <span class="kw">try</span>:
+        Region(Region(<span class="dig">1085</span>,<span class="dig">131</span>,<span class="dig">84</span>,<span class="dig">28</span>)).<span class="skw">find</span>(<img src="1466943375529.png" />).<span class="skw">click</span>()
+    <span class="kw">except</span> FindFailed:
+        <span class="kw">pass</span>
+<span class="cmt">#    setFindFailedResponse(ABORT)   </span>
+    setThrowException(True)
+    Debug.user(<span class="str">"Make Full Screen"</span>)
+    <span class="kw">return</span>
+
+
+<span class="kw">def</span> MakeFullScreen():
+    <span class="cmt"># Enlarge left bar</span>
+    r = Region(Region(<span class="dig">1042</span>,<span class="dig">426</span>,<span class="dig">35</span>,<span class="dig">114</span>))
+    <span class="kw">with</span> Region(r):
+       <span class="kw">if</span> exists(<img src="1466943356273.png" />):
+           <span class="skw">click</span>(Location(<span class="dig">1061</span>, <span class="dig">458</span>))
+
+
+<span class="cmt">#        Region(Region(1033,376,58,222)).find("1466943356273.png").click()</span>
+
+
+    <span class="cmt"># remove up tool bar</span>
+    r_toptoolbar = Region(Region(<span class="dig">1085</span>,<span class="dig">131</span>,<span class="dig">84</span>,<span class="dig">28</span>))
+    <span class="kw">with</span> Region(r_toptoolbar):
+        <span class="kw">if</span> exists(<img src="1466943375529.png" />):
+            <span class="skw">click</span>()
+<span class="cmt">#        Region(Region(1085,131,84,28)).find("1466943375529.png").click() </span>
+
+    Debug.user(<span class="str">"Make Full Screen"</span>)
+    <span class="kw">return</span>
+
+
+<span class="kw">def</span> ShowupCheck():
+    r_mainmenu = Region(Region(<span class="dig">429</span>,<span class="dig">149</span>,<span class="dig">596</span>,<span class="dig">231</span>))
+    <span class="kw">with</span> r_mainmenu:
+        <span class="skw">find</span>(<img src="1466956847138.png" />).<span class="skw">click</span>()
+        Region(Region(<span class="dig">533</span>,<span class="dig">615</span>,<span class="dig">232</span>,<span class="dig">76</span>)).<span class="skw">find</span>(<img src="1466956881720.png" />).<span class="skw">click</span>()
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">type</span>(Key.ESC)
+
+    <span class="kw">return</span>
+
+
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    openApp(<span class="str">"Google Chrome"</span>)
+    MakeFullScreen();
+</pre>
+</body>
+</html>
