@@ -1,0 +1,184 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>actions.sikuli</h2> <a href="actions.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">from</span> sikuli.Sikuli <span class="kw">import</span> *
+<span class="kw">import</span> utils
+reload(utils)
+<span class="kw">from</span> utils <span class="kw">import</span> *
+
+<span class="kw">import</span> dailyAct
+reload(dailyAct)
+<span class="kw">from</span> dailyAct <span class="kw">import</span> *
+
+<span class="cmt">#  this is for daily sotang</span>
+Debug.user(<span class="str">"Sub char each join evt &amp; go  %s"</span> % (<span class="str">"V01"</span>))
+
+<span class="kw">def</span> ExitScript(event):
+    exit()
+
+<span class="cmt"># When the user pressed Ctrl+Alt+F1, click the top-left apple icon.</span>
+Env.addHotkey(Key.ESC, KeyModifier.CTRL ,ExitScript)
+
+<span class="kw">def</span> eachSubCharStart():
+    <span class="cmt"># find empty event icon</span>
+    <span class="cmt"># click found </span>
+    <span class="cmt"># comeback ori tab</span>
+    <span class="cmt"># join, get Daliy</span>
+    <span class="cmt"># turn ssd tab</span>
+    <span class="cmt"># click go </span>
+    <span class="cmt"># turn ssd go tab </span>
+    r_IDicons = Region(Region(<span class="dig">10</span>,<span class="dig">315</span>,<span class="dig">350</span>,<span class="dig">364</span>))
+
+<span class="cmt">#    r_IDicons.find("../IdIconEmpty.png").click()</span>
+    r_IDicons.<span class="skw">find</span>(<img src="IdIconEmpty.png" />).<span class="skw">click</span>()
+    <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    <span class="skw">type</span>(Key.TAB , KeyModifier.CTRL + KeyModifier.SHIFT )
+<span class="cmt">#    Region(92,-893,377,55).find ("JoinEvent.png").click()</span>
+    <span class="skw">wait</span>(<span class="dig">0.5</span>)
+
+    Region(Region(<span class="dig">382</span>,<span class="dig">168</span>,<span class="dig">687</span>,<span class="dig">60</span>)).<span class="skw">find</span> (<img src="GetDaliyReward.png" />).<span class="skw">click</span>()
+    <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    <span class="skw">type</span>(Key.TAB , KeyModifier.CTRL )
+
+<span class="kw">def</span> checkLoginPeriod():
+    <span class="cmt"># check event join result </span>
+    <span class="kw">if</span> <span class="kw">not</span> Region(Region(<span class="dig">425</span>,<span class="dig">284</span>,<span class="dig">441</span>,<span class="dig">111</span>)).exists(<img src="1467297251249.png" />,<span class="dig">0.5</span>):
+        <span class="kw">return</span>
+
+    <span class="skw">click</span>(Location(<span class="dig">117</span>, <span class="dig">215</span>))
+    <span class="skw">type</span>(Key.SPACE)
+    Region(Region(<span class="dig">236</span>,<span class="dig">129</span>,<span class="dig">757</span>,<span class="dig">238</span>)).<span class="skw">find</span>(<img src="1467297304824.png" />).<span class="skw">click</span>()
+
+
+<span class="kw">def</span> CheckEventResult():
+    <span class="cmt"># check event join result </span>
+    <span class="cmt">#openApp("your-browser") # should open a new Browser window</span>
+    <span class="skw">wait</span>(<span class="dig">0.5</span>) <span class="cmt"># make sure window is ready</span>
+    <span class="skw">type</span>(<span class="str">"l"</span>, KeyModifier.CMD)
+    <span class="cmt">#wait(1)</span>
+    paste(<span class="str">"http://ssd.ilovegame.co.kr/event/read/1872"</span>)
+    <span class="skw">type</span>(Key.ENTER)
+    <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    <span class="cmt">#openApp("Google Chrome", "http://ssd.ilovegame.co.kr/event/read/1793")</span>
+    <span class="skw">type</span>(Key.SPACE);
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">type</span>(Key.SPACE, KeyModifier.SHIFT)
+
+    <span class="cmt"># check daily join result </span>
+<span class="cmt">#    Region(838,-954,95,46).find("1446477118087.png").click()   </span>
+<span class="cmt">#    wait(0.7)</span>
+<span class="cmt">#    Region(-54,-600,847,612).find("DialogDailyClose.png").click()</span>
+<span class="cmt">#    wait(0.3)</span>
+
+
+<span class="kw">def</span> GoFlashSSD():
+    Region(Region(<span class="dig">125</span>,<span class="dig">337</span>,<span class="dig">279</span>,<span class="dig">364</span>)).<span class="skw">find</span>(<img src="1466955773193.png" />).<span class="skw">click</span>()
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+
+    Debug.user(<span class="str">"End of each sub char start"</span>)
+
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    Settings.UserLogs = True
+    Settings.UserLogPrefix = <span class="str">"user"</span>
+    Settings.ActionLogs = True
+    openApp(<span class="str">"Google Chrome"</span>)
+
+    <span class="kw">if</span> <span class="kw">not</span> Region(Region(<span class="dig">149</span>,<span class="dig">722</span>,<span class="dig">260</span>,<span class="dig">79</span>)).exists(<img src="1466955899374.png" />,<span class="dig">0.5</span>):
+        eachSubCharStart()
+    <span class="cmt">#    CheckEventResult()</span>
+        checkLoginPeriod()
+        GoFlashSSD()
+
+
+        <span class="skw">wait</span>(<span class="dig">4</span>)
+        MakeFullScreen()
+
+        Region(Region(<span class="dig">149</span>,<span class="dig">722</span>,<span class="dig">260</span>,<span class="dig">79</span>)).<span class="skw">wait</span>(<img src="1466955899374.png" />, <span class="dig">20</span>)
+        <span class="skw">wait</span>(<span class="dig">3</span>) <span class="cmt"># to wait until reorganize menu icon</span>
+        Debug.user(<span class="str">"Reload done !!"</span> )
+
+    ShowupCheck()
+
+
+    runScript(<span class="str">"/Users/JamesSong/getDailyReward"</span>)
+    getHonor()
+    SinSunSeYe()
+    Fishing()
+    Jumsul()
+    <span class="cmt">#EventDayHeaven()</span>
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+
+    runScript(<span class="str">"/Users/JamesSong/dailySoTang"</span>)
+    exit()
+</pre>
+</body>
+</html>

@@ -1,0 +1,366 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>actions.sikuli</h2> <a href="actions.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="cmt"># -*- coding: utf-8 -*-</span>
+
+<span class="kw">from</span> sikuli.Sikuli <span class="kw">import</span> *
+<span class="cmt">#from Screens import *</span>
+<span class="kw">import</span> Screens
+
+
+
+<span class="cmt"># define : screen constants</span>
+<span class="kw">class</span> Action:
+    <span class="kw">def</span> __init__(self):
+        <span class="kw">pass</span>
+
+    <span class="kw">def</span> Do(self,menu):
+        <span class="kw">if</span> <span class="kw">not</span> Screens.select(menu):
+            <span class="kw">print</span> (<span class="str">"Can not find "</span>, menu)
+            <span class="kw">return</span> False
+        <span class="kw">return</span> True
+
+    <span class="kw">def</span> post(self):
+        <span class="kw">pass</span>
+
+
+<span class="cmt"># 한글 주석 test</span>
+<span class="cmt"># 출석 이벤트 참여</span>
+<span class="kw">class</span> AttendAction(Action):
+
+    I_MenuAttend = <img src="MainMenuAttend.png" />
+
+    r_attendBtn = Region(<span class="dig">533</span>,<span class="dig">615</span>,<span class="dig">232</span>,<span class="dig">76</span>)
+    i_Attend_btn = <img src="A_Attend_attendbtn.png" />
+
+    <span class="kw">def</span> __init__(self):
+        Action.__init__(self)
+
+    <span class="kw">def</span> Do(self):
+        <span class="kw">if</span> <span class="kw">not</span> Action.Do(self, self.I_MenuAttend):
+            <span class="kw">return</span> False
+
+        Screens.findClick(self.r_attendBtn, self.i_Attend_btn)
+<span class="cmt">#        self.r_attendBtn.find(self.i_Attend_btn).click()</span>
+
+        self.post()
+
+    <span class="kw">def</span> post(self):
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(Key.ESC)
+
+
+
+<span class="kw">class</span> RewardAction(Action):
+
+    I_MenuReward = Pattern(<img src="M_Menu_Reward.png" />).similar(<span class="dig">0.5</span>)
+
+    r_AllGet = Region(<span class="dig">575</span>,<span class="dig">645</span>,<span class="dig">87</span>,<span class="dig">41</span>)
+    i_AllGet_btn = <img src="A_Reward_Allget.png" />
+
+    <span class="kw">def</span> __init__(self):
+        Action.__init__(self)
+
+    <span class="kw">def</span> Do(self):
+        <span class="kw">if</span> <span class="kw">not</span> Action.Do(self,self.I_MenuReward):
+            <span class="kw">return</span> False
+
+        Screens.findClick(self.r_AllGet, self.i_AllGet_btn)
+        <span class="cmt">#self.r_AllGet.find(self.i_AllGet_btn).click()</span>
+        self.post()
+
+    <span class="kw">def</span> post(self):
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(Key.ESC)
+
+
+<span class="kw">class</span> HonorAction(Action):
+
+    I_MenuHonor = <img src="M_Menu_Honor.png" />
+
+    r_HonorItem_InList = Region(<span class="dig">438</span>,<span class="dig">393</span>,<span class="dig">361</span>,<span class="dig">161</span>)
+    i_GetHonorReward  = <img src="A_Honor_getHonorReward.png" />
+
+    r_HonorConfirm_Dig = Region(<span class="dig">541</span>,<span class="dig">422</span>,<span class="dig">168</span>,<span class="dig">115</span>)
+    i_HonorConfirm_btn = <img src="A_Honor_HornorConfirm.png" />
+
+    r_dailyReward = Region(<span class="dig">709</span>,<span class="dig">553</span>,<span class="dig">132</span>,<span class="dig">112</span>)
+    i_dailyReward = <img src="A_Honor_getDailyReward.png" />
+
+    <span class="kw">def</span> Do(self):
+        <span class="kw">if</span> <span class="kw">not</span> Action.Do(self,self.I_MenuHonor):
+            <span class="kw">return</span> False
+
+        <span class="cmt"># get honor</span>
+        <span class="kw">if</span> Screens.checkExists(self.r_HonorItem_InList, self.i_GetHonorReward):
+            <span class="cmt">#Region(Region(438,393,361,161)).find(Pattern("1467385626798.png").targetOffset(280,3)).click()</span>
+            <span class="cmt">#self.r_HonorItem_InList.getLastMatch().targetOffset(280,3).click()</span>
+            Screens.findClick(self.r_HonorItem_InList, Pattern(self.i_GetHonorReward).targetOffset(<span class="dig">280</span>,<span class="dig">3</span>))
+            <span class="skw">wait</span>(<span class="dig">1.5</span>)
+            Screens.findClick(self.r_HonorConfirm_Dig, self.i_HonorConfirm_btn)
+
+        <span class="cmt"># get daily yellow tickets</span>
+
+        <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">5</span>):
+            <span class="kw">if</span> Screens.checkExists(self.r_dailyReward, Pattern(self.i_dailyReward).similar(<span class="dig">0.88</span>)):
+                self.r_dailyReward.getLastMatch().<span class="skw">click</span>()
+                <span class="skw">wait</span>(<span class="dig">1.5</span>)
+
+
+        self.post()
+
+    <span class="kw">def</span> post(self):
+        <span class="cmt">#wait(1)</span>
+        <span class="skw">type</span>(Key.ESC)
+
+<span class="kw">class</span> SuyehAction(Action):
+    I_MenuSuyeh  = Pattern(<img src="M_Menu_Suyeh.png" />).similar(<span class="dig">0.89</span>)
+
+    r_SuyehBtn = Region(<span class="dig">470</span>,<span class="dig">695</span>,<span class="dig">314</span>,<span class="dig">41</span>)
+    l_getBtn = Location(<span class="dig">572</span>, <span class="dig">717</span>)
+
+    <span class="kw">def</span> Do(self):
+        <span class="kw">if</span> <span class="kw">not</span> Action.Do(self,self.I_MenuSuyeh):
+            <span class="kw">return</span> False
+        <span class="cmt"># wait until load suyeh screen</span>
+        <span class="skw">wait</span>(<span class="dig">2</span>)
+
+        <span class="cmt"># click get btn until no more remains</span>
+        <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">12</span>):
+            <span class="skw">click</span>(self.l_getBtn)
+            <span class="cmt">#wait(0.2)</span>
+            <span class="skw">click</span>(self.l_getBtn)
+            <span class="cmt">#wait(0.2)</span>
+
+        <span class="cmt">#Screens.findClick(self.r_SuyehBtn, self.i_AllGet_btn)</span>
+
+        self.post()
+
+    <span class="kw">def</span> post(self):
+        <span class="cmt">#wait(1)</span>
+        <span class="skw">type</span>(Key.ESC)
+
+
+<span class="kw">class</span> FishingAction(Action):
+
+    r_LeftTextMenu = Region(<span class="dig">19</span>,<span class="dig">265</span>,<span class="dig">76</span>,<span class="dig">173</span>)
+    l_TopTextMenu = Location(<span class="dig">31</span>, <span class="dig">281</span>)
+
+    r_FishDiag = Region(<span class="dig">587</span>,<span class="dig">256</span>,<span class="dig">92</span>,<span class="dig">27</span>)
+    i_FishDiagText = <img src="A_Fish_Diag_FishText.png" />
+    r_FishDiagBottom = Region(<span class="dig">541</span>,<span class="dig">588</span>,<span class="dig">184</span>,<span class="dig">54</span>)
+    i_FishDiagBottom_getall = <img src="A_FishDiag_Bottom_Getall.png" />
+
+    <span class="cmt"># check cur state</span>
+    <span class="kw">def</span> Do(self):
+        <span class="skw">click</span>(self.l_TopTextMenu)
+        <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        <span class="kw">if</span> Screens.checkExists(self.r_FishDiag, self.i_FishDiagText,<span class="dig">2</span>):
+            <span class="kw">pass</span>
+        <span class="kw">else</span>:
+            Debug.user(<span class="str">"No Fishing.. Skip"</span>)
+            <span class="kw">return</span>
+
+        Screens.findClick(self.r_FishDiagBottom,self.i_FishDiagBottom_getall)
+
+        <span class="skw">wait</span>(<span class="dig">5</span>)
+
+        self.post()
+
+    <span class="kw">def</span> post(self):
+        <span class="cmt">#wait(1)</span>
+        <span class="skw">type</span>(Key.ESC)
+
+<span class="kw">class</span> JusulMergeAction(Action):
+    IB_MenuJusul = <img src="MB_Menu_Jusul.png" />
+
+    r_JusulDiagBtnArea = Region(<span class="dig">344</span>,<span class="dig">587</span>,<span class="dig">119</span>,<span class="dig">50</span>)
+    i_JusulMergeBtn = <img src="A_Jusul_Diag_MergeAll.png" />
+
+    r_JusulConfirmDiag = Region(<span class="dig">526</span>,<span class="dig">453</span>,<span class="dig">204</span>,<span class="dig">69</span>)
+    i_ConfirmBtn = <img src="A_Jusul_ConfirmDiag_ok.png" />
+
+    <span class="kw">def</span> Do(self):
+        <span class="kw">if</span> <span class="kw">not</span> Screens.selectBottom(self.IB_MenuJusul):
+            <span class="kw">print</span> (<span class="str">"Can not find "</span>, self.IB_MenuJusul)
+            <span class="kw">return</span> False
+
+        Screens.findClick(self.r_JusulDiagBtnArea,self.i_JusulMergeBtn)
+        Screens.findClick(self.r_JusulConfirmDiag,self.i_ConfirmBtn)
+
+        self.post()
+
+    <span class="kw">def</span> post(self):
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(Key.ESC)
+
+
+<span class="kw">class</span> JumsulAction(Action):
+    I_MenuJumsul = <img src="M_Menu_Jumsul.png" />
+
+    <span class="kw">def</span> Do(self):
+        <span class="kw">if</span> <span class="kw">not</span> Action.Do(self, self.I_MenuJumsul):
+            <span class="kw">return</span> False
+
+        r_JumsulDiag  = Region(<span class="dig">590</span>,<span class="dig">229</span>,<span class="dig">81</span>,<span class="dig">35</span>)
+        i_JumsulText = <img src="A_Jumsul_TextTop.png" />
+
+        <span class="kw">if</span> <span class="kw">not</span> Screens.checkExists(r_JumsulDiag, i_JumsulText, <span class="dig">3</span>):
+            <span class="kw">return</span>
+
+        l_rollDices = Location(<span class="dig">620</span>, <span class="dig">492</span>)
+        <span class="skw">click</span>(l_rollDices)
+
+        r_1000kinusul =Region(<span class="dig">646</span>,<span class="dig">426</span>,<span class="dig">80</span>,<span class="dig">48</span>)
+        i_1000kinusul  = <img src="A_Jumsul_Diag_1000ki.png" />
+
+        <span class="cmt"># click 9 times</span>
+        Screens.findClick(r_1000kinusul, i_1000kinusul)
+        <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">8</span>):
+            r_1000kinusul.getLastMatch().<span class="skw">click</span>() <span class="cmt"># click again 8 more</span>
+
+        l_ConfirmDices = Location(<span class="dig">630</span>, <span class="dig">453</span>)
+        <span class="skw">click</span>(l_ConfirmDices)
+
+        <span class="cmt"># click ok 9 more</span>
+        <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">10</span>):
+            <span class="skw">click</span>(l_ConfirmDices)
+            <span class="skw">wait</span>(<span class="dig">0.5</span>)
+            <span class="skw">click</span>(l_ConfirmDices)
+
+        self.post()
+
+    <span class="kw">def</span> post(self):
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">click</span> (Location(<span class="dig">994</span>, <span class="dig">239</span>))
+
+
+<span class="kw">import</span> Farm
+
+<span class="kw">class</span> HarvistAction(Action):
+
+    <span class="kw">def</span> Do(self):
+        Farm.showupFarm()
+        <span class="skw">wait</span> (<span class="dig">1.5</span>)
+
+        Farm.HarvistMoney()
+
+        <span class="cmt"># wait till finish animation</span>
+        <span class="skw">wait</span> (<span class="dig">2</span>)
+        Farm.HarvistExp()
+
+    <span class="kw">def</span> post(self):
+        <span class="skw">type</span>(Key.ESC)
+
+
+<span class="kw">class</span> InfinteAction(Action):
+
+    <span class="kw">def</span> Do(self):
+        <span class="kw">if</span> <span class="kw">not</span> Action.Do(self, <img src="M_Main_100yeargungon.png" />):
+            <span class="kw">return</span> False
+
+        r_100yearTry = Region(<span class="dig">413</span>,<span class="dig">644</span>,<span class="dig">380</span>,<span class="dig">76</span>)
+        Screens.findClick(r_100yearTry, <img src="A_100year_Challange.png" />)
+
+        self.post()
+
+
+    <span class="kw">def</span> post(self):
+        <span class="skw">wait</span>(<span class="dig">2</span>)
+
+
+
+<span class="kw">class</span> PeachAction(Action):
+    I_MenuPeaches  = Pattern(<img src="M_Menu_Peaches.png" />).similar(<span class="dig">0.89</span>)
+
+    r_SuyehBtn = Region(<span class="dig">470</span>,<span class="dig">695</span>,<span class="dig">314</span>,<span class="dig">41</span>)
+    l_getBtn = Location(<span class="dig">572</span>, <span class="dig">717</span>)
+
+    <span class="kw">def</span> Do(self):
+        <span class="kw">if</span> <span class="kw">not</span> Action.Do(self,self.I_MenuPeaches):
+            <span class="kw">return</span> False
+        <span class="cmt"># wait</span>
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+
+        <span class="cmt"># pick peach</span>
+        l_peach_first = Location()
+        <span class="skw">click</span>(l_peach_first)
+
+
+        self.post()
+
+    <span class="kw">def</span> post(self):
+        <span class="cmt">#wait(1)</span>
+        <span class="skw">type</span>(Key.ESC)
+</pre>
+</body>
+</html>

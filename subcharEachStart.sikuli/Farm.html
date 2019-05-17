@@ -1,0 +1,170 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>actions.sikuli</h2> <a href="actions.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">from</span> sikuli.Sikuli <span class="kw">import</span> *
+
+<span class="kw">import</span> Screens
+
+l_MoneyTree = Location(<span class="dig">688</span>, <span class="dig">466</span>)
+l_ExpTree  = Location(<span class="dig">571</span>, <span class="dig">470</span>) <span class="cmt"># exptree</span>
+
+r_TreeDiagTitle = Region(<span class="dig">587</span>,<span class="dig">358</span>,<span class="dig">84</span>,<span class="dig">24</span>)
+
+r_HarvistDiagBtn = Region(<span class="dig">582</span>,<span class="dig">570</span>,<span class="dig">94</span>,<span class="dig">36</span>)
+
+
+<span class="kw">def</span> showupFarm():
+    r_leftmenu = Region(Region(<span class="dig">14</span>,<span class="dig">306</span>,<span class="dig">83</span>,<span class="dig">116</span>))
+    r_farm = Region(Region(<span class="dig">610</span>,<span class="dig">231</span>,<span class="dig">39</span>,<span class="dig">21</span>))
+    <span class="kw">if</span> <span class="kw">not</span> r_farm.exists(<img src="Md_Harvist_FarmTitleText.png" />,<span class="dig">1</span>):
+        r_leftmenu.<span class="skw">find</span>(Pattern(<img src="M_LeftMenu_Harvist.png" />).similar(<span class="dig">0.46</span>)).<span class="skw">click</span>()
+
+
+<span class="kw">def</span> harvist(fl, locTree):
+    Debug.user(<span class="str">"Harvist one"</span>)
+    <span class="kw">print</span> fl
+<span class="cmt">#    mouseMove(fl)</span>
+    <span class="skw">click</span>(fl)
+
+    <span class="cmt"># wait select tree diag</span>
+    <span class="kw">if</span> <span class="kw">not</span> Screens.checkExists(r_TreeDiagTitle, <img src="Md_Harvist_TreeDiagTitle.png" />,<span class="dig">1</span>):
+        <span class="kw">return</span> False
+
+    <span class="cmt"># moneytree or exptree</span>
+    <span class="skw">click</span>(locTree)
+    <span class="skw">sleep</span>(<span class="dig">0.2</span>)
+
+    <span class="kw">if</span> <span class="kw">not</span> Screens.findClick(r_HarvistDiagBtn, <img src="Md_Harvist_DiagGet.png" />):
+        <span class="kw">return</span> False
+
+<span class="cmt">#    sleep(1)</span>
+<span class="cmt">#    click(fl)</span>
+    <span class="kw">return</span> True
+
+<span class="kw">def</span> MakeFarmArray():
+
+    <span class="cmt">#    r_harvmenu = Region(-158,-653,101,251)</span>
+    avail_f = []
+    field_array = [Location(<span class="dig">623</span>, <span class="dig">381</span>), Location(<span class="dig">536</span>, <span class="dig">424</span>), Location(<span class="dig">453</span>, <span class="dig">471</span>),Location(<span class="dig">709</span>, <span class="dig">421</span>)] <span class="cmt">#, Location(535, 510),Location(795, 461) ]</span>
+    <span class="kw">for</span> fl <span class="kw">in</span> field_array:
+        r = Region(fl.x - <span class="dig">25</span>, fl.y-<span class="dig">20</span>, <span class="dig">50</span>, <span class="dig">40</span>)
+        <span class="kw">if</span> r.exists(<img src="Md_Harvist_soil.png" />,<span class="dig">1</span>):
+            avail_f.append(fl)
+
+    <span class="kw">print</span> (<span class="str">"Found "</span>, avail_f)
+    <span class="kw">return</span> avail_f
+
+
+TreeTypePtr  = { <span class="str">'money'</span> : l_MoneyTree, <span class="str">'exp'</span> : l_ExpTree }
+
+<span class="kw">def</span> HarvistMoney():
+    mfs = MakeFarmArray()
+    <span class="kw">if</span> <span class="kw">not</span> HarvistArray(mfs, <span class="str">'money'</span>):
+        <span class="kw">return</span>
+
+    <span class="cmt"># 1 more (8 times )</span>
+    HarvistArray(mfs, <span class="str">'money'</span>)
+
+
+<span class="kw">def</span> HarvistExp():
+    <span class="cmt"># remove mouse cursor on the soil</span>
+    mouseMove(Location(<span class="dig">752</span>, <span class="dig">372</span>))
+    <span class="skw">wait</span>(<span class="dig">1</span>)     <span class="cmt"># wait until money harvist animation finished</span>
+    efs = MakeFarmArray()
+    HarvistArray(efs, <span class="str">'exp'</span>)
+
+
+<span class="kw">def</span> HarvistArray(farms, <span class="skw">type</span>):
+    Debug.user(<span class="str">"==== "</span>)
+    grow_farm = []
+    <span class="kw">for</span> f <span class="kw">in</span> farms:
+        Debug.user(<span class="str">"try Harvist "</span>)
+        <span class="kw">print</span> f
+
+        <span class="kw">if</span> <span class="kw">not</span> harvist(f, TreeTypePtr[<span class="skw">type</span>]):
+            <span class="cmt"># Screens. region .findclick X</span>
+            <span class="skw">click</span>(Location(<span class="dig">752</span>, <span class="dig">372</span>))
+            <span class="kw">break</span>  <span class="cmt">#</span>
+            <span class="cmt">#return False</span>
+        <span class="skw">wait</span>(<span class="dig">0.5</span>)
+        grow_farm.append(f)
+
+    <span class="kw">for</span> f <span class="kw">in</span> grow_farm:
+        <span class="cmt"># click f</span>
+        <span class="skw">click</span>(f)
+        <span class="skw">wait</span>(<span class="dig">0.2</span>)
+
+    <span class="kw">print</span> grow_farm
+    <span class="kw">return</span> True
+</pre>
+</body>
+</html>
