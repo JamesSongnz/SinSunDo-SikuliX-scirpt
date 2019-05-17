@@ -1,0 +1,267 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>dailyAct.sikuli</h2> <a href="dailyAct.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">from</span> sikuli.Sikuli <span class="kw">import</span> *
+
+
+
+<span class="kw">def</span> getDailyHonor():
+    Region(Region(<span class="dig">403</span>,<span class="dig">133</span>,<span class="dig">637</span>,<span class="dig">242</span>)).<span class="skw">find</span>(<img src="1467299772067.png" />).<span class="skw">click</span>()
+    Region(Region(<span class="dig">407</span>,<span class="dig">212</span>,<span class="dig">444</span>,<span class="dig">453</span>)).<span class="skw">find</span>(<img src="1467299815068.png" />).<span class="skw">click</span>()
+    Region(Region(<span class="dig">505</span>,<span class="dig">382</span>,<span class="dig">230</span>,<span class="dig">114</span>)).<span class="skw">find</span>(<img src="1467299871578.png" />).<span class="skw">click</span>()
+
+
+<span class="kw">def</span> getDailyActivities():
+    Debug.user(<span class="str">"Star of Daliy Activities"</span>)
+    <span class="skw">wait</span>(<span class="dig">0.5</span>)
+
+    <span class="skw">click</span>(Location(<span class="dig">907</span>, -<span class="dig">751</span>))
+    <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    <span class="skw">click</span>(Location(<span class="dig">679</span>, -<span class="dig">265</span>))
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">click</span>(Location(<span class="dig">679</span>, -<span class="dig">265</span>))
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">click</span>(Location(<span class="dig">679</span>, -<span class="dig">265</span>))
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+
+    <span class="skw">click</span>(Location(<span class="dig">662</span>, -<span class="dig">400</span>))
+    <span class="skw">wait</span>(<span class="dig">0.5</span>)
+
+    <span class="skw">click</span>(Location(<span class="dig">512</span>, -<span class="dig">407</span>))
+
+    <span class="skw">type</span>(Key.ESC)
+    <span class="cmt">#click(Location(727, -673))</span>
+    <span class="kw">return</span>;
+
+<span class="kw">def</span> SinSunSeYe():
+    r_menu=Region(Region(<span class="dig">401</span>,<span class="dig">149</span>,<span class="dig">630</span>,<span class="dig">278</span>))
+    <span class="kw">if</span> <span class="kw">not</span> r_menu.exists(Pattern(<img src="1467385948969.png" />).similar(<span class="dig">0.89</span>),<span class="dig">0.5</span>):
+        <span class="kw">return</span>
+    <span class="str">"""    
+    try:    
+        r_menu.find(Pattern("1467385948969.png").similar(0.89))
+        pass
+    except FindFailed:
+        Debug.user("No SinsunSeYe.. Skip")
+        return
+    """</span>
+
+    <span class="cmt"># found </span>
+    r_menu.getLastMatch().<span class="skw">click</span>()
+
+    <span class="skw">wait</span>(<span class="dig">2</span>)
+
+    <span class="cmt"># go n times </span>
+    r_button = Region(Region(<span class="dig">470</span>,<span class="dig">695</span>,<span class="dig">314</span>,<span class="dig">41</span>))
+
+    <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>, <span class="dig">2</span>):
+        <span class="kw">for</span> j <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">40</span>):
+            <span class="skw">click</span>(Location(<span class="dig">572</span>, <span class="dig">717</span>))
+            <span class="skw">wait</span>(<span class="dig">0.1</span>)
+
+<span class="cmt">#        if Region(Region(575,701,151,36)).exists("1467389244108.png"):</span>
+<span class="cmt">#            break</span>
+
+
+    <span class="skw">type</span>(Key.ESC)
+    <span class="kw">return</span>
+<span class="kw">def</span> JusulMerge():
+    Region(Region(<span class="dig">528</span>,<span class="dig">641</span>,<span class="dig">724</span>,<span class="dig">136</span>)).<span class="skw">find</span>(<img src="1467386485959.png" />).<span class="skw">click</span>()
+    Region(Region(<span class="dig">344</span>,<span class="dig">587</span>,<span class="dig">119</span>,<span class="dig">50</span>)).<span class="skw">find</span>(<img src="1467386514941.png" />).<span class="skw">click</span>()
+    Region(Region(<span class="dig">526</span>,<span class="dig">453</span>,<span class="dig">204</span>,<span class="dig">69</span>)).<span class="skw">find</span>(<img src="1467386547264.png" />).<span class="skw">click</span>()
+    <span class="skw">type</span>(Key.ESC)
+    <span class="skw">wait</span>(<span class="dig">0.5</span>)
+
+<span class="kw">def</span> Fishing():
+    r_menu=Region(Region(<span class="dig">19</span>,<span class="dig">265</span>,<span class="dig">76</span>,<span class="dig">173</span>))
+    <span class="cmt"># check cur state</span>
+    <span class="skw">click</span>(Location(<span class="dig">31</span>, <span class="dig">281</span>))
+    <span class="skw">wait</span>(<span class="dig">0.3</span>)
+    <span class="kw">if</span> <span class="kw">not</span> Region(Region(<span class="dig">587</span>,<span class="dig">256</span>,<span class="dig">92</span>,<span class="dig">27</span>)).exists(<img src="1467389931121.png" />,<span class="dig">1</span>):
+        Debug.user(<span class="str">"No Fishing.. Skip"</span>)
+        <span class="kw">return</span>
+
+
+    r_inFishing=Region(Region(<span class="dig">541</span>,<span class="dig">588</span>,<span class="dig">184</span>,<span class="dig">54</span>))
+    <span class="kw">try</span>:
+        r_inFishing.<span class="skw">wait</span>(<img src="1467386212104.png" />,<span class="dig">1</span>)
+        r_inFishing.getLastMatch().<span class="skw">click</span>()
+    <span class="kw">except</span> FindFailed:
+        <span class="skw">type</span>(Key.ESC)
+        <span class="kw">return</span>
+
+    <span class="skw">wait</span>(<span class="dig">7</span>)
+    <span class="kw">if</span> r_inFishing.exists(<img src="1467386212104.png" />):
+        JusulMerge()
+        r_inFishing.getLastMatch().<span class="skw">click</span>()
+        <span class="skw">wait</span>(<span class="dig">5</span>)
+
+    <span class="skw">type</span>(Key.ESC)
+
+
+<span class="kw">def</span> EventDayHeaven():
+    Region(Region(<span class="dig">401</span>,<span class="dig">149</span>,<span class="dig">630</span>,<span class="dig">278</span>)).<span class="skw">find</span>(<img src="1467382850597.png" />).<span class="skw">click</span>()
+    Region(Region(<span class="dig">476</span>,<span class="dig">506</span>,<span class="dig">218</span>,<span class="dig">178</span>)).<span class="skw">find</span>(<img src="1467382879502.png" />).<span class="skw">click</span>()
+    Region(Region(<span class="dig">1045</span>,<span class="dig">139</span>,<span class="dig">213</span>,<span class="dig">70</span>)).<span class="skw">find</span>(<img src="1467382907611.png" />).<span class="skw">click</span>()
+    Region(Region(<span class="dig">790</span>,<span class="dig">173</span>,<span class="dig">313</span>,<span class="dig">176</span>)).<span class="skw">find</span>(<img src="1467382945440.png" />).<span class="skw">click</span>()
+    Region(Region(<span class="dig">706</span>,<span class="dig">529</span>,<span class="dig">173</span>,<span class="dig">96</span>)).<span class="skw">find</span>(<img src="1467382971051.png" />).<span class="skw">click</span>()
+    Region(Region(<span class="dig">1063</span>,<span class="dig">141</span>,<span class="dig">188</span>,<span class="dig">65</span>)).<span class="skw">find</span>(<img src="1467383004792.png" />).<span class="skw">click</span>()
+
+<span class="kw">def</span> getHonor():
+    Region(Region(<span class="dig">401</span>,<span class="dig">149</span>,<span class="dig">630</span>,<span class="dig">278</span>)).<span class="skw">find</span>(<img src="1467383434959.png" />).<span class="skw">click</span>()
+
+    <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    <span class="kw">if</span> <span class="kw">not</span> Region(Region(<span class="dig">438</span>,<span class="dig">393</span>,<span class="dig">361</span>,<span class="dig">161</span>)).exists(<img src="1467385626798.png" />):
+        <span class="kw">return</span>
+
+    <span class="kw">try</span>:
+
+
+        Region(Region(<span class="dig">438</span>,<span class="dig">393</span>,<span class="dig">361</span>,<span class="dig">161</span>)).<span class="skw">find</span>(Pattern(<img src="1467385626798.png" />).targetOffset(<span class="dig">280</span>,<span class="dig">3</span>)).<span class="skw">click</span>()
+        <span class="skw">wait</span>(<span class="dig">1.5</span>)
+        Region(Region(<span class="dig">541</span>,<span class="dig">422</span>,<span class="dig">168</span>,<span class="dig">115</span>)).<span class="skw">find</span>(<img src="1467384181447.png" />).<span class="skw">click</span>()
+    <span class="kw">except</span> FindFailed:
+        <span class="kw">pass</span>
+
+    r_dailyReward = Region(Region(<span class="dig">709</span>,<span class="dig">553</span>,<span class="dig">132</span>,<span class="dig">112</span>))
+<span class="cmt">#    r_dailyReward.find("1467383550190.png").click()</span>
+    <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">13</span>):
+        <span class="kw">if</span> r_dailyReward.exists(Pattern(<img src="1467384114680.png" />).similar(<span class="dig">0.88</span>),<span class="dig">2</span>):
+            r_dailyReward.<span class="skw">find</span>(Pattern(<img src="1467384114680.png" />).similar(<span class="dig">0.88</span>)).<span class="skw">click</span>()
+            <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="kw">else</span>:
+            <span class="skw">type</span>(Key.ESC)
+
+<span class="kw">def</span> Jumsul():
+    r_menu = Region(Region(<span class="dig">401</span>,<span class="dig">149</span>,<span class="dig">630</span>,<span class="dig">278</span>))
+    <span class="kw">if</span> <span class="kw">not</span> r_menu.exists(<img src="1467386698329.png" />):
+        <span class="kw">return</span>
+
+    r_menu.getLastMatch().<span class="skw">click</span>()
+
+    <span class="cmt">#Region(Region(401,149,630,278)).find("1467386698329.png").click()</span>
+
+    <span class="skw">wait</span>(<span class="dig">0.1</span>)
+    Regino(Region(<span class="dig">590</span>,<span class="dig">229</span>,<span class="dig">81</span>,<span class="dig">35</span>)).<span class="skw">wait</span>(<img src="1467729951535.png" />,<span class="dig">3</span>)
+    consumed = <span class="dig">0</span>
+    <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">10</span>):
+        <span class="skw">click</span>(Location(<span class="dig">547</span>, <span class="dig">511</span>))
+
+        <span class="kw">if</span> consumed == <span class="dig">0</span> <span class="kw">and</span> Region(Region(<span class="dig">569</span>,<span class="dig">365</span>,<span class="dig">23</span>,<span class="dig">27</span>)).exists(<img src="1467386842469.png" />,<span class="dig">0.5</span>):
+            <span class="kw">if</span> <span class="kw">not</span> Region(Region(<span class="dig">643</span>,<span class="dig">428</span>,<span class="dig">93</span>,<span class="dig">44</span>)).exists(<img src="1467391247826.png" />):
+
+
+                <span class="kw">for</span> j <span class="kw">in</span> range(<span class="dig">0</span>,<span class="dig">10</span>):
+                    <span class="kw">if</span> <span class="kw">not</span> Region(Region(<span class="dig">546</span>,<span class="dig">483</span>,<span class="dig">78</span>,<span class="dig">28</span>)).exists(<img src="1467391052997.png" />,<span class="dig">0</span>,<span class="dig">3</span>):
+                    <span class="cmt">#if not Region(Region(342,399,10,13)).exists("1467386956004.png",0.5):</span>
+                        <span class="skw">click</span>(Location(<span class="dig">684</span>, <span class="dig">452</span>)) <span class="cmt"># 1000 ki nu sul</span>
+                    <span class="kw">else</span>:
+                        consumed = <span class="dig">1</span>
+
+        <span class="kw">else</span>:
+            <span class="cmt"># retry </span>
+            <span class="kw">pass</span>
+
+        <span class="cmt"># get this one</span>
+        Region(Region(<span class="dig">524</span>,<span class="dig">408</span>,<span class="dig">213</span>,<span class="dig">60</span>)).<span class="skw">find</span>(<img src="1467386785694.png" />).<span class="skw">click</span>()
+    Region(Region(<span class="dig">948</span>,<span class="dig">212</span>,<span class="dig">73</span>,<span class="dig">55</span>)).<span class="skw">find</span>(<img src="1467391353325.png" />).<span class="skw">click</span>()
+
+    Region(Region(<span class="dig">646</span>,<span class="dig">426</span>,<span class="dig">80</span>,<span class="dig">48</span>)).<span class="skw">find</span>(<img src="1467730249151.png" />)
+
+<span class="cmt">#    Region(Region(541,422,168,115)).find("1467384181447.png").click()</span>
+
+
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    <span class="cmt">#  this is for daily sotang</span>
+    Settings.UserLogs = True
+    Settings.UserLogPrefix = <span class="str">"user"</span>
+    Settings.ActionLogs = True
+    openApp(<span class="str">"Google Chrome"</span>)
+    Debug.user(<span class="str">"Sub Char %s"</span> % (<span class="str">"V01"</span>))
+
+    Jumsul()
+    exit()
+    <span class="cmt">#getDailyActivities() </span>
+<span class="cmt">#    JusulMerge()</span>
+    Fishing()
+    exit()
+    SinSunSeYe()
+    exit()
+    getHonor()
+
+    EventDayHeaven()
+
+    Debug.user(<span class="str">"End of Daily SoTang"</span>)
+    exit()
+</pre>
+</body>
+</html>
