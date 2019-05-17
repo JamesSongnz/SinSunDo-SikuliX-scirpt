@@ -1,0 +1,228 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>harvistFarm.sikuli</h2> <a href="harvistFarm.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="cmt">#  나무 </span>
+
+
+
+<span class="kw">from</span> sikuli.Sikuli <span class="kw">import</span> *
+
+<span class="kw">import</span> utils
+reload(utils)
+<span class="kw">from</span> utils <span class="kw">import</span> *
+
+<span class="kw">def</span> showupFarm():
+    r_leftmenu = Region(Region(<span class="dig">14</span>,<span class="dig">306</span>,<span class="dig">83</span>,<span class="dig">116</span>))
+    r_farm = Region(Region(<span class="dig">610</span>,<span class="dig">231</span>,<span class="dig">39</span>,<span class="dig">21</span>))
+    <span class="kw">if</span> <span class="kw">not</span> r_farm.exists(<img src="1466947315616.png" />,<span class="dig">1</span>):
+        r_leftmenu.<span class="skw">find</span>(Pattern(<img src="1466948395491.png" />).similar(<span class="dig">0.46</span>)).<span class="skw">click</span>()
+
+<span class="cmt">#</span>
+
+    <span class="kw">return</span>
+
+<span class="kw">def</span> expTree(fl):
+    Debug.user(<span class="str">"Harvist "</span>)
+    <span class="kw">print</span> fl
+    mouseMove(fl)
+    <span class="skw">click</span>(fl)
+    <span class="cmt">#wait </span>
+    <span class="kw">try</span>:
+        Region(Region(<span class="dig">587</span>,<span class="dig">358</span>,<span class="dig">84</span>,<span class="dig">24</span>)).<span class="skw">wait</span>(<img src="1466949564018.png" />)
+    <span class="kw">except</span> FindFailed:
+        <span class="kw">return</span>
+
+<span class="cmt">#    click(Location(688, 466)) </span>
+    <span class="skw">click</span>(Location(<span class="dig">571</span>, <span class="dig">470</span>)) <span class="cmt"># exptree</span>
+    <span class="skw">sleep</span>(<span class="dig">0.5</span>)
+
+    <span class="kw">try</span>:
+        Region(Region(<span class="dig">582</span>,<span class="dig">570</span>,<span class="dig">94</span>,<span class="dig">36</span>)).<span class="skw">find</span>(<img src="1466951214589.png" />).<span class="skw">click</span>()
+    <span class="kw">except</span> FindFailed:
+        <span class="kw">return</span> False
+
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+
+    <span class="skw">click</span>(fl)
+    <span class="kw">return</span> True
+
+
+<span class="kw">def</span> harvist(fl):
+    Debug.user(<span class="str">"Harvist "</span>)
+    <span class="kw">print</span> fl
+    mouseMove(fl)
+    <span class="skw">click</span>(fl)
+    <span class="cmt">#wait </span>
+    <span class="kw">try</span>:
+        Region(Region(<span class="dig">587</span>,<span class="dig">358</span>,<span class="dig">84</span>,<span class="dig">24</span>)).<span class="skw">wait</span>(<img src="1466949564018.png" />)
+    <span class="kw">except</span> FindFailed:
+        <span class="kw">return</span>
+
+    <span class="skw">click</span>(Location(<span class="dig">688</span>, <span class="dig">466</span>))
+    <span class="skw">sleep</span>(<span class="dig">0.5</span>)
+
+    <span class="kw">try</span>:
+        Region(Region(<span class="dig">582</span>,<span class="dig">570</span>,<span class="dig">94</span>,<span class="dig">36</span>)).<span class="skw">find</span>(<img src="1466951214589.png" />).<span class="skw">click</span>()
+    <span class="kw">except</span> FindFailed:
+        <span class="kw">return</span> False
+
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+
+    <span class="skw">click</span>(fl)
+    <span class="kw">return</span> True
+
+<span class="kw">def</span> HarvistFarm():
+
+<span class="cmt">#    r_harvmenu = Region(-158,-653,101,251)</span>
+    avail_f = []
+    field_array = [Location(<span class="dig">623</span>, <span class="dig">381</span>), Location(<span class="dig">536</span>, <span class="dig">424</span>), Location(<span class="dig">453</span>, <span class="dig">471</span>),Location(<span class="dig">709</span>, <span class="dig">421</span>), Location(<span class="dig">535</span>, <span class="dig">510</span>),Location(<span class="dig">795</span>, <span class="dig">461</span>) ]
+    <span class="kw">for</span> fl <span class="kw">in</span> field_array:
+        r = Region(fl.x - <span class="dig">25</span>, fl.y-<span class="dig">20</span>, <span class="dig">50</span>, <span class="dig">40</span>)
+        <span class="kw">if</span> r.exists(<img src="1466949100991.png" />):
+            avail_f.append(fl)
+
+
+
+    Debug.user(<span class="str">"==== "</span>)
+    <span class="kw">for</span> f <span class="kw">in</span> avail_f:
+        Debug.user(<span class="str">"try Harvist "</span>)
+        <span class="kw">print</span> f
+<span class="cmt">#        if not harvist(f):</span>
+        <span class="kw">if</span> <span class="kw">not</span> expTree(f):
+            <span class="cmt"># Screens. region .findclick X </span>
+            <span class="skw">click</span>(Location(<span class="dig">752</span>, <span class="dig">372</span>))
+            <span class="kw">break</span>
+
+    <span class="kw">print</span> avail_f
+
+    <span class="kw">return</span>
+    r_harvmenu = Region()
+    r_harvmenu.<span class="skw">find</span>(<img src="1446369918754.png" />).<span class="skw">click</span>()
+    <span class="cmt"># check number of Soil</span>
+    r_soilnum = Region(<span class="dig">268</span>,-<span class="dig">334</span>,<span class="dig">16</span>,<span class="dig">19</span>)
+<span class="cmt">#    num = int(r_soilnum.text())</span>
+<span class="cmt">#    Debug.user("Num of Soil is %d" % num)</span>
+
+
+    Region(<span class="dig">190</span>,-<span class="dig">410</span>,<span class="dig">136</span>,<span class="dig">164</span>).<span class="skw">wait</span>(<img src="1446371258172.png" />,<span class="dig">3</span>)
+
+    r= Region(<span class="dig">231</span>,-<span class="dig">676</span>,<span class="dig">440</span>,<span class="dig">320</span>)
+
+    <span class="kw">try</span>:
+        soil = r.<span class="skw">find</span>(Pattern(<img src="1446567695203.png" />))
+    <span class="kw">except</span> FindFailed:
+        <span class="kw">return</span>
+
+    Debug.user(<span class="str">"try to find soil"</span>)
+    <span class="kw">while</span> r.<span class="skw">find</span>(Pattern(<img src="1446567695203.png" />).similar(<span class="dig">0.80</span>)):
+        Debug.user(<span class="str">"Found one "</span>)
+        l_cursoil = r.getLastMatch().getTarget()
+        <span class="cmt">#Debug.user(l_cursoil)</span>
+        r.getLastMatch().<span class="skw">click</span>()
+
+        <span class="cmt">#wait(0.5)</span>
+        Region(<span class="dig">362</span>,-<span class="dig">549</span>,<span class="dig">301</span>,<span class="dig">180</span>).<span class="skw">find</span>(<img src="1446370157422.png" />).<span class="skw">click</span>()
+
+        r_moneytree = Region(<span class="dig">317</span>,-<span class="dig">644</span>,<span class="dig">385</span>,<span class="dig">383</span>)
+        <span class="kw">if</span> <span class="kw">not</span> r_moneytree.exists(<img src="1446370183919.png" />):
+            <span class="kw">break</span>
+
+        r_moneytree.<span class="skw">find</span>(<img src="1446568350024.png" />).<span class="skw">click</span>()
+        <span class="skw">wait</span>(<span class="dig">0.3</span>)
+        <span class="skw">click</span>(l_cursoil)
+
+
+        <span class="cmt">#wait(1)</span>
+        Debug.user(<span class="str">"one harvest done"</span>)
+
+
+    Debug.user(<span class="str">"End of Harvist"</span>)
+
+    <span class="skw">type</span>(Key.ESC)
+    <span class="kw">return</span>;
+
+
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    Settings.UserLogs = True
+    Settings.UserLogPrefix = <span class="str">"user"</span>
+    Settings.ActionLogs = True
+    openApp(<span class="str">"Google Chrome"</span>)
+    Debug.user(<span class="str">"Harvist Farm %s"</span> % (<span class="str">"V01"</span>))
+<span class="cmt">#    MakeFullScreen()</span>
+    showupFarm()
+<span class="cmt">#    HarvistFarm()      </span>
+
+    Debug.user(<span class="str">"End "</span>)
+    exit()
+</pre>
+</body>
+</html>
